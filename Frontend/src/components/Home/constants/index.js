@@ -23,7 +23,7 @@ import {
   jobit,
   tripguide,
   threejs,
-} from "../assets";
+} from "../../../assets";
 
 export const navLinks = [
   {
@@ -39,6 +39,8 @@ export const navLinks = [
     title: "Contact",
   },
 ];
+
+
 
 const services = [
   {
@@ -168,26 +170,26 @@ const experiences = [
 const testimonials = [
   {
     testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
+      "This platform is a game-changer! Mentors guide me through academics and career choices, while peers offer great study support.",
     name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
+    designation: "Graduate",
+    company: "St.High UNiversity",
     image: "https://randomuser.me/api/portraits/women/4.jpg",
   },
   {
     testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
+      "Valuable guidance for research and career planning, plus supportive peer interactions. A must-have for grad students!.",
     name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
+    designation: "Second Year Student",
+    company: "LTCE",
     image: "https://randomuser.me/api/portraits/men/5.jpg",
   },
   {
     testimonial:
       "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
+    name: "ake Malan:",
+    designation: "Final Year Student",
+    company: "Namo school of Graduates",
     image: "https://randomuser.me/api/portraits/women/6.jpg",
   },
 ];

@@ -14,17 +14,13 @@
     "@react-three/fiber": "^8.11.1",
     "antd": "^5.20.6",
     "firebase": "^10.13.1",
-    "flowbite-react": "^0.10.1",
     "framer-motion": "^9.0.7",
     "lucide-react": "^0.441.0",
     "maath": "^0.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "react-hook-form": "^7.53.0",
-=======
     "react-icons": "^5.3.0",
->>>>>>> f73f0a4ba7d3206772b24f19f31e9b0b5d156503
     "react-router-dom": "^6.8.1",
     "react-tilt": "^0.1.4",
     "react-vertical-timeline-component": "^3.6.0",

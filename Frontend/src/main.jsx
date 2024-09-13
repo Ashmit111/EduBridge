@@ -8,13 +8,18 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, R
 
 import App from "./App";
 import "./index.css";
+import Layout from "../layout";
+import AddPost from "./components/AddPosts/AddPost";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Home />}>
-      <Route path="login" element={<Login/>}></Route>
+    <Route path='/' element={<Layout/>}>
+      <Route path="home" element={<Home/>}/>
+      <Route path="login" element={<Login/>}/>
+      <Route path="add-post" element={<AddPost/>}/>
     </Route>
   )
+  
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(

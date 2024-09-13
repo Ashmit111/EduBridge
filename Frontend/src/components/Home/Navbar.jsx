@@ -63,7 +63,7 @@ const Navbar = () => {
 
         <div className="flex justify-center">
           <Link
-            to='/'
+            to='/login'
             className='flex items-center gap-2 ml-2'
             onClick={() => {
               setActive("");

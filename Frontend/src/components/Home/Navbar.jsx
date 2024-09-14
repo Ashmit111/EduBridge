@@ -75,7 +75,7 @@ const Navbar = () => {
             </Flex>
           </Link>
           <Link
-            to='/'
+            to='/signup'
             className='flex items-center gap-2'
             onClick={() => {
               setActive("");

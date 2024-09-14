@@ -1,15 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { auth, db } from '../../firebase-config';
+import { signOut } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
-const StudentProfile = ({ student, onLogout, onUpdateProfile }) => {
-    student = {
-        fullName:"Jayesh",
-        email:"email@gmail.com",
-        fieldOfStudy:"history",
-        graduationYear:2026,
-        subjects:['history','OS',"DBMS"]
-    }
+const formDataProfile = () => {
+
+    const [profile, setProfile] = useState(null);
+    const [error, setError] = useState(null);
+    const [formData, setFormData] = useState({});
+    const userId = auth.currentUser?.uid; // Get the current user's ID
+    const navigate = useNavigate(); // For navigation
+    useEffect(() => {
+        if (userId) {
+            const fetchProfile = async () => {
+                try {
+                    const docRef = doc(db, 'formDatas', userId); // Assuming 'formDatas' is the collection
+                    const docSnap = await getDoc(docRef);
+                    
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        setProfile(data);
+                        setFormData(data); // Initialize form data with profile data
+                    } else {
+                        setError("No such document!");
+                    }
+                } catch (error) {
+                    setError("Error fetching profile data: " + error.message);
+                }
+            };
+
+            fetchProfile();
+        }
+    }, [userId]);
+    console.log(profile);
+    
+
   const [isEditing, setIsEditing] = useState(false);
-  const [formData, setFormData] = useState({ ...student });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,25 +46,36 @@ const StudentProfile = ({ student, onLogout, onUpdateProfile }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    onUpdateProfile(formData);
-    setIsEditing(false);
-  };
+    try {
+        const docRef = doc(db, 'formDatas', userId);
+        await updateDoc(docRef, formData);
+        setProfile(formData); // Update local profile state
+        setIsEditing(false); // Exit editing mode
+    } catch (error) {
+        setError("Error updating profile: " + error.message);
+    }
+};
 
   const handleUpdateProfile = () => {
     setIsEditing(true);
   };
 
-  const handleLogout = () => {
-    onLogout(); // Redirect to login page after logout
-  };
+  const handleLogout = async () => {
+    try {
+        await signOut(auth);
+        navigate('/login'); // Redirect to the landing page
+    } catch (error) {
+        setError("Error signing out: " + error.message);
+    }
+};
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <div className="max-w-3xl mx-auto p-6 bg-gray-800 rounded-lg shadow-lg mt-10">
         <h1 className="text-3xl font-bold mb-4 text-purple-400">
-          Student Profile
+          formData Profile
         </h1>
         
         {isEditing ? (
@@ -142,29 +180,29 @@ const StudentProfile = ({ student, onLogout, onUpdateProfile }) => {
           <>
             <div className="mb-4">
               <h2 className="text-xl font-semibold">Full Name</h2>
-              <p className="text-gray-300">{student.fullName}</p>
+              <p className="text-gray-300">{profile.fullName}</p>
             </div>
 
             <div className="mb-4">
               <h2 className="text-xl font-semibold">Email</h2>
-              <p className="text-gray-300">{student.email}</p>
+              <p className="text-gray-300">{profile.email}</p>
             </div>
 
             <div className="mb-4">
               <h2 className="text-xl font-semibold">Field of Study</h2>
-              <p className="text-gray-300">{student.fieldOfStudy}</p>
+              <p className="text-gray-300">{profile.fieldOfStudy}</p>
             </div>
 
             <div className="mb-4">
               <h2 className="text-xl font-semibold">Graduation Year</h2>
-              <p className="text-gray-300">{student.graduationYear}</p>
+              <p className="text-gray-300">{profile.graduationYear}</p>
             </div>
 
             <div className="mb-4">
               <h2 className="text-xl font-semibold">Subjects</h2>
               <ul className="list-disc list-inside text-gray-300">
-                {student.subjects.map((subject, index) => (
-                  <li key={index}>{subject}</li>
+                {profile.subjects.map((subject) => (
+                  <li key={subject}>{subject}</li>
                 ))}
               </ul>
             </div>
@@ -190,4 +228,4 @@ const StudentProfile = ({ student, onLogout, onUpdateProfile }) => {
   );
 };
 
-export default StudentProfile;
+export default formDataProfile;

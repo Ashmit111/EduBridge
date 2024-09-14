@@ -5,22 +5,20 @@ import Login from "./components/Login/login";
 import Signup from "./components/Signup/SignUp";
 import StudentSignup from "./components/Student_SignUp/StudentSignup";
 import MentorSignup from "./components/MentorSignup/MentorSignup";
-import StudentDashboard from "./components/studentDashboard/studentDashboard";
-import { createBrowserRouter, createRoutesFromElements, Route, Router, RouterProvider } from 'react-router-dom'
-import Dashboard from "./components/Dashboard/Dashboard";
-
+import { createBrowserRouter, createRoutesFromElements, Route,  RouterProvider } from 'react-router-dom'
+import DashboardUser from "./components/Dashboard.user/Dashboard.jsx"
 
 
 import "./index.css";
 import AddPost from "./components/AddPosts/AddPost";
-import ContentDashBoard from "./components/Dashboard/ContentDashBoard";
-import BlogCard from "./components/Dashboard/BlogCard";
+import ContentDashBoard from "./components/Dashboard.user/ContentDashBoard.jsx";
+import BlogCard from "./components/Dashboard.user/BlogCard.jsx";
 import YourSchedules from "./components/Scheduled/Scheduled";
 import SchedulePage from "./components/Schedule/Schedule";
-import StudentProfile from "./components/Dashboard/StudentProfile";
 import MentorDashboard from "./components/mentor-dashboard/Mentor-dashboard.jsx";
 import UploadPDF from "./components/notesUpload/UploadPDF.jsx";
 import MentorProfile from "./components/mentor-dashboard/Mentor-profile.jsx";
+import StudentDashboards from "./components/StudentDashboard/StudentDashboard.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +30,21 @@ const router = createBrowserRouter(
      
 
       <Route path="signup" element={<Signup />} />
+      <Route path="home" element={<Home/>}/>
+      <Route path="login" element={<Login/>}/>
+      <Route path="add-post" element={<AddPost/>}/>
+      <Route path="student-dashboard" element={<DashboardUser/>}>
+        <Route path="mentor" element={<ContentDashBoard/>}/>
+        <Route path="schedule" element={<YourSchedules/>}/>
+        <Route path="blog" element={<BlogCard/>}/>
+        <Route path="bookschedule" element={<SchedulePage/>}/>
+      <Route path="profile" element={<StudentDashboards />} />
+      </Route>
+      {/* <Route path="mentor-dashboard" element={<DashboardMentor/>}>
+        
+    
+      </Route> */}
+      <Route path="signup" element={<Signup/>}/>
       <Route path="/student-signup" element={<StudentSignup />} />
       <Route path="/mentor-signup" element={<MentorSignup />} />
 
@@ -44,6 +57,11 @@ const router = createBrowserRouter(
       <Route path="/student-dashboard" element={<StudentProfile />} />
       <Route path="uploadNotes" element={<UploadPDF/>} />
 
+      <Route path="/mentor-dashboard" element={<MentorDashboard/>}/>
+      {/* <Route path="/schedule-page" element={<SchedulePage />} /> */}
+     
+
+      
     </Route>
   )
 

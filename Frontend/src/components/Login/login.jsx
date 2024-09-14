@@ -63,7 +63,7 @@ const Login = () => {
                 }
 
                 // Navigate to the appropriate dashboard
-                navigate(`/${userType}-dashboard`);
+                navigate(`/${userType}-dashboard/profile`);
             } else {
                 setError(`No user found for the ${userType} role.`);
             }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FaUser, FaBlog, FaUserTie, FaCalendar, FaQuestionCircle, FaSignOutAlt, FaStar, FaSearch, FaTimes } from 'react-icons/fa';
+import { FaSearch } from 'react-icons/fa';
 
 const NavBar = () => {
     const [searchTerm, setSearchTerm] = useState    ('');

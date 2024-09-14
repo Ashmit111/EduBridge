@@ -6,7 +6,7 @@ import NavBar from './NavBar';
 
 
 
-const Dashboard = () => {
+const DashboardMentor = () => {
  
   return (
     <div className="flex h-screen bg-[#050816] text-white">
@@ -25,4 +25,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardMentor;

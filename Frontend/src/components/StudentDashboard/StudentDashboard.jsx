@@ -4,14 +4,13 @@ import { auth, db } from '../../firebase-config';
 import { signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
-const StudentDashboard = () => {
+const StudentDashboards = () => {
     const [profile, setProfile] = useState(null);
     const [error, setError] = useState(null);
-    const [showProfile, setShowProfile] = useState(false); // State to manage profile visibility
-    const [editing, setEditing] = useState(false); // State to manage profile editing
     const [formData, setFormData] = useState({});
     const userId = auth.currentUser?.uid; // Get the current user's ID
     const navigate = useNavigate(); // For navigation
+    const [isEditing, setIsEditing] = useState(false); // State to manage profile editing
 
     useEffect(() => {
         if (userId) {
@@ -45,16 +44,12 @@ const StudentDashboard = () => {
         }
     };
 
-    const handleEditClick = () => {
-        setEditing(!editing);
-    };
-
     const handleChange = (e) => {
-        const { id, value } = e.target;
-        setFormData(prevData => ({
-            ...prevData,
-            [id]: value
-        }));
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
     };
 
     const handleSubmit = async (e) => {
@@ -63,105 +58,148 @@ const StudentDashboard = () => {
             const docRef = doc(db, 'students', userId);
             await updateDoc(docRef, formData);
             setProfile(formData); // Update local profile state
-            setEditing(false); // Exit editing mode
+            setIsEditing(false); // Exit editing mode
         } catch (error) {
             setError("Error updating profile: " + error.message);
         }
     };
 
     return (
-        <div>
-            <h1>Student Dashboard</h1>
-            {error && <p className="text-red-500">{error}</p>}
-            
-            <button
-                onClick={() => setShowProfile(!showProfile)}
-                className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-200"
-            >
-                {showProfile ? 'Hide Profile' : 'View Profile'}
-            </button>
-            
-            {showProfile && (
-                <div className="mt-4">
-                    {editing ? (
-                        <form onSubmit={handleSubmit}>
-                            <div className="mb-4">
-                                <label htmlFor="fullName" className="block text-gray-700 font-bold mb-2">Full Name</label>
-                                <input
-                                    type="text"
-                                    id="fullName"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                                    value={formData.fullName}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label htmlFor="fieldOfStudy" className="block text-gray-700 font-bold mb-2">Field of Study</label>
-                                <input
-                                    type="text"
-                                    id="fieldOfStudy"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                                    value={formData.fieldOfStudy}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label htmlFor="graduationYear" className="block text-gray-700 font-bold mb-2">Graduation Year</label>
-                                <input
-                                    type="text"
-                                    id="graduationYear"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                                    value={formData.graduationYear}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                            <div className="mb-4">
-                                <label htmlFor="subjects" className="block text-gray-700 font-bold mb-2">Subjects</label>
-                                <input
-                                    type="text"
-                                    id="subjects"
-                                    className="w-full px-4 py-2 border border-gray-300 rounded-lg"
-                                    value={formData.subjects}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
+        <div className="min-h-screen bg-gray-900 text-white">
+            <div className="max-w-3xl mx-auto p-6 bg-gray-800 rounded-lg shadow-lg mt-10">
+                <h1 className="text-3xl font-bold mb-4 text-purple-400">Student Dashboard</h1>
+
+                {error && <p className="text-red-500">{error}</p>}
+                
+                {isEditing ? (
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div className="mb-4">
+                            <label htmlFor="fullName" className="text-xl font-semibold">Full Name</label>
+                            <input
+                                id="fullName"
+                                name="fullName"
+                                type="text"
+                                value={formData.fullName || ''}
+                                onChange={handleChange}
+                                className="w-full p-2 bg-gray-700 text-white rounded-lg"
+                                required
+                            />
+                        </div>
+
+                        <div className="mb-4">
+                            <label htmlFor="fieldOfStudy" className="text-xl font-semibold">Field of Study</label>
+                            <input
+                                id="fieldOfStudy"
+                                name="fieldOfStudy"
+                                type="text"
+                                value={formData.fieldOfStudy || ''}
+                                onChange={handleChange}
+                                className="w-full p-2 bg-gray-700 text-white rounded-lg"
+                                required
+                            />
+                        </div>
+
+                        <div className="mb-4">
+                            <label htmlFor="graduationYear" className="text-xl font-semibold">Graduation Year</label>
+                            <input
+                                id="graduationYear"
+                                name="graduationYear"
+                                type="text"
+                                value={formData.graduationYear || ''}
+                                onChange={handleChange}
+                                className="w-full p-2 bg-gray-700 text-white rounded-lg"
+                                required
+                            />
+                        </div>
+
+                        <div className="mb-4">
+                            <label htmlFor="subjects" className="text-xl font-semibold">Subjects (comma-separated)</label>
+                            <input
+                                id="subjects"
+                                name="subjects"
+                                type="text"
+                                value={formData.subjects?.join(', ') || ''}
+                                onChange={(e) => handleChange({
+                                    target: {
+                                        name: 'subjects',
+                                        value: e.target.value.split(',').map(subj => subj.trim()),
+                                    },
+                                })}
+                                className="w-full p-2 bg-gray-700 text-white rounded-lg"
+                                required
+                            />
+                        </div>
+
+                        <div className="flex justify-between mt-6">
                             <button
                                 type="submit"
-                                className="bg-green-700 text-white py-2 px-6 rounded-lg hover:bg-green-800 transition duration-200"
+                                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
                             >
                                 Save Changes
                             </button>
-                        </form>
-                    ) : (
-                        <div>
-                            <p><strong>Full Name:</strong> {profile.fullName}</p>
-                            <p><strong>Email:</strong> {profile.email}</p>
-                            <p><strong>Field of Study:</strong> {profile.fieldOfStudy}</p>
-                            <p><strong>Graduation Year:</strong> {profile.graduationYear}</p>
-                            <p><strong>Subjects:</strong> {profile.subjects}</p>
                             <button
-                                onClick={handleEditClick}
-                                className="bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition duration-200"
+                                type="button"
+                                onClick={() => setIsEditing(false)}
+                                className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-500"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                ) : (
+                    <>
+                        <div className="mb-4">
+                            <h2 className="text-xl font-semibold">Full Name</h2>
+                            <p className="text-gray-300">{profile?.fullName || 'N/A'}</p>
+                        </div>
+
+                        <div className="mb-4">
+                            <h2 className="text-xl font-semibold">Email</h2>
+                            <p className="text-gray-300">{profile?.email || 'N/A'}</p>
+                        </div>
+
+                        <div className="mb-4">
+                            <h2 className="text-xl font-semibold">Field of Study</h2>
+                            <p className="text-gray-300">{profile?.fieldOfStudy || 'N/A'}</p>
+                        </div>
+
+                        <div className="mb-4">
+                            <h2 className="text-xl font-semibold">Graduation Year</h2>
+                            <p className="text-gray-300">{profile?.graduationYear || 'N/A'}</p>
+                        </div>
+
+                        <div className="mb-4">
+                            <h2 className="text-xl font-semibold">Subjects</h2>
+                            <ul className="list-disc list-inside text-gray-300">
+                                {profile?.subjects?.length > 0 ? (
+                                    profile.subjects.map((subject, index) => (
+                                        <li key={index}>{subject}</li>
+                                    ))
+                                ) : (
+                                    <li>No subjects listed</li>
+                                )}
+                            </ul>
+                        </div>
+
+                        <div className="flex justify-between mt-6">
+                            <button
+                                onClick={() => setIsEditing(true)}
+                                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500"
                             >
                                 Edit Profile
                             </button>
+                            <button
+                                onClick={handleLogout}
+                                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500"
+                            >
+                                Logout
+                            </button>
                         </div>
-                    )}
-                </div>
-            )}
-            
-            <button
-                onClick={handleLogout}
-                className="mt-4 bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition duration-200"
-            >
-                Logout
-            </button>
+                    </>
+                )}
+            </div>
         </div>
     );
 };
 
-export default StudentDashboard;
+export default StudentDashboards;

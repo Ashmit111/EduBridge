@@ -7,16 +7,16 @@ const SideBar = () => {
     const navigate = useNavigate();
 
     const ChooseProfile = () => {
-        navigate(`/dashboard/profile`);
+        navigate(`/student-dashboard/profile`);
     }
     const ChooseBlog = () => {
-        navigate(`/dashboard/blog`);
+        navigate(`/student-dashboard/blog`);
     }
     const ChooseMentor = () => {
-        navigate(`/dashboard/mentor`);
+        navigate(`/student-dashboard/mentor`);
     }
     const ChooseSchedule = () => {
-        navigate(`/dashboard/schedule`);
+        navigate(`/student-dashboard/schedule`);
     }
 
   return ( 

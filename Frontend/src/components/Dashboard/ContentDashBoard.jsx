@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 
 import { FaUser, FaBlog, FaUserTie, FaCalendar, FaQuestionCircle, FaSignOutAlt, FaStar, FaSearch, FaTimes } from 'react-icons/fa';
 const mentors = [
-    { id: 1, name: 'John Doe', rating: 4.8, specialty: 'React Development', bio: 'Experienced React developer with 10+ years in the industry.', experience: '10+ years', availability: 'Mon-Fri, 9AM-5PM', expertise: ['React', 'Redux', 'Node.js'] },
-    { id: 2, name: 'Jane Smith', rating: 4.9, specialty: 'UI/UX Design', bio: 'Passionate UI/UX designer with a keen eye for detail.', experience: '8 years', availability: 'Tue-Sat, 10AM-6PM', expertise: ['Figma', 'Adobe XD', 'Sketch'] },
-    { id: 3, name: 'Mike Johnson', rating: 4.7, specialty: 'Full Stack Development', bio: 'Full stack developer with expertise in MERN stack.', experience: '7 years', availability: 'Mon-Thu, 11AM-7PM', expertise: ['MongoDB', 'Express', 'React', 'Node.js'] },
-    { id: 4, name: 'Emily Brown', rating: 4.6, specialty: 'Python Programming', bio: 'Python enthusiast specializing in data science and machine learning.', experience: '6 years', availability: 'Wed-Sun, 9AM-5PM', expertise: ['Python', 'TensorFlow', 'PyTorch'] },
+    { id: 1, name: 'Rajiv Jain', rating: 4.8, specialty: 'React Development', bio: 'Experienced React developer with 10+ years in the industry.', experience: '10+ years', availability: 'Mon-Fri, 9AM-5PM', expertise: ['React', 'Redux', 'Node.js'] },
+    { id: 2, name: 'Namo Prajapati', rating: 4.9, specialty: 'UI/UX Design', bio: 'Passionate UI/UX designer with a keen eye for detail.', experience: '8 years', availability: 'Tue-Sat, 10AM-6PM', expertise: ['Figma', 'Adobe XD', 'Sketch'] },
+    { id: 3, name: 'Rahul Morya ', rating: 4.7, specialty: 'Full Stack Development', bio: 'Full stack developer with expertise in MERN stack.', experience: '7 years', availability: 'Mon-Thu, 11AM-7PM', expertise: ['MongoDB', 'Express', 'React', 'Node.js'] },
+    { id: 4, name: 'Ramesh Garg', rating: 4.6, specialty: 'Python Programming', bio: 'Python enthusiast specializing in data science and machine learning.', experience: '6 years', availability: 'Wed-Sun, 9AM-5PM', expertise: ['Python', 'TensorFlow', 'PyTorch'] },
   ];
 
 const ContentDashBoard = () => {

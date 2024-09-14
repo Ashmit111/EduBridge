@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 
-import SideBar from './SideBar';
+
 import { Outlet } from 'react-router-dom';
-import NavBar from './NavBar';
+import NavBarMentor from './Navbar';
+import SideBarMentor from './Sidebar';
+
 
 
 
@@ -11,12 +13,12 @@ const DashboardMentor = () => {
   return (
     <div className="flex h-screen bg-[#050816] text-white">
       {/* Sidebar */}
-    <SideBar/>
+    <SideBarMentor/>
 
       {/* Main Content */}
       <div className="flex-1 overflow-y-auto">
         {/* Navbar */}
-        <NavBar/>
+        <NavBarMentor/>
 
         {/* Content */}
         <Outlet/>

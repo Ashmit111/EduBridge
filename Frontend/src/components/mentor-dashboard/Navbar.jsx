@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaUser, FaBlog, FaUserTie, FaCalendar, FaQuestionCircle, FaSignOutAlt, FaStar, FaSearch, FaTimes } from 'react-icons/fa';
 
-const NavBar = () => {
+const NavBarMentor = () => {
     const [searchTerm, setSearchTerm] = useState    ('');
   
     const handleSearch = (e) => {
@@ -26,4 +26,4 @@ const NavBar = () => {
   )
 }
 
-export default NavBar
+export default NavBarMentor

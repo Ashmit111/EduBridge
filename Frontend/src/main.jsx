@@ -19,36 +19,39 @@ import YourSchedules from "./components/Scheduled/Scheduled";
 import SchedulePage from "./components/Schedule/Schedule";
 import StudentProfile from "./components/Dashboard/StudentProfile";
 import MentorDashboard from "./components/mentor-dashboard/Mentor-dashboard.jsx";
+import UploadPDF from "./components/notesUpload/UploadPDF.jsx";
+import MentorProfile from "./components/mentor-dashboard/Mentor-profile.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="home" element={<Home/>}/>
-      <Route path="login" element={<Login/>}/>
-      <Route path="add-post" element={<AddPost/>}/>
-      <Route path="dashboard" element={<Dashboard/>}>
-        <Route path="mentor" element={<ContentDashBoard/>}/>
-        <Route path="schedule" element={<YourSchedules/>}/>
-        <Route path="blog" element={<BlogCard/>}/>
-        <Route path="bookschedule" element={<SchedulePage/>}/>
-      </Route>
-      <Route path="signup" element={<Signup/>}/>
-      <Route path="/student-signup" element={<StudentSignup />} />
-      <Route path="/mentor-signup" element={<MentorSignup />} />
-      <Route path="/mentor-dashboard" element={<MentorDashboard/>}/>
-      <Route path="/student-dashboard" element={<StudentProfile />} />
-      {/* <Route path="/schedule-page" element={<SchedulePage />} /> */}
+      <Route path="home" element={<Home />} />
+      <Route path="login" element={<Login />} />
+      
+
      
 
-      
+      <Route path="signup" element={<Signup />} />
+      <Route path="/student-signup" element={<StudentSignup />} />
+      <Route path="/mentor-signup" element={<MentorSignup />} />
+
+      <Route path="/mentor-dashboard" element={<MentorDashboard />} >
+        <Route path="profile" element={<MentorProfile/>}/>
+        <Route path="add-post" element={<AddPost />} />
+        <Route path="myblog" element={<BlogCard />} />
+      </Route>
+
+      <Route path="/student-dashboard" element={<StudentProfile />} />
+      <Route path="uploadNotes" element={<UploadPDF/>} />
+
     </Route>
   )
-  
+
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>,
 )
 

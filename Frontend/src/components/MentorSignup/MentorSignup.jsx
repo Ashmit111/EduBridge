@@ -57,7 +57,7 @@ const MentorSignup = () => {
                 role: 'mentor' 
             });
             
-            navigate('/mentor-dashboard');
+            navigate('/mentor-dashboard/profile');
         } catch (error) {
             console.error("Error signing up:", error);
             setError("An error occurred while signing up. Please try again.");

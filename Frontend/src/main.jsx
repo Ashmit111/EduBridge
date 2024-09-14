@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Home from "./components/Home/Home";
-import Layout from "./Layout";
-import Login from './components/Login/login'
-import VideoCall from "./components/VideoCall/VideoCall";
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
+import Login from "./components/Login/login";
+import Signup from "./components/Signup/SignUp";
+import StudentSignup from "./components/Student_SignUp/StudentSignup";
+import MentorSignup from "./components/MentorSignup/MentorSignup";
+import StudentDashboard from "./components/studentDashboard/studentDashboard";
+import { createBrowserRouter, createRoutesFromElements, Route, Router, RouterProvider } from 'react-router-dom'
+
 
 import "./index.css";
 import AddPost from "./components/AddPosts/AddPost";
@@ -17,9 +20,12 @@ const router = createBrowserRouter(
       <Route path="home" element={<Home/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="add-post" element={<AddPost/>}/>
-      <Route path="/room/:roomID" element={< VideoCall/>}/>
-      <Route path="/calender" element={<Calender/>}/>
-      <Route path="/mentor" element={<MentorCard/>}/>
+      <Route path="signup" element={<Signup/>}/>
+      <Route path="/student-signup" element={<StudentSignup />} />
+      <Route path="/mentor-signup" element={<MentorSignup />} />
+      <Route path="/student-dashboard" element={<StudentDashboard />} />
+
+      
     </Route>
   )
   

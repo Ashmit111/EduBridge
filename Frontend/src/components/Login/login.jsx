@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { app } from '../../firebase-config'; 
+import { doc, getDoc } from 'firebase/firestore'; // Import Firestore functions
+import { app, db } from '../../firebase-config'; // Ensure db is correctly imported
 
 const Login = () => {
     const [error, setError] = useState(null);
@@ -18,8 +19,26 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await signInWithEmailAndPassword(auth, email, password);
-            navigate("/${userType}-dashboard");
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+
+            // Fetch the user document from Firestore based on the userType
+            const userDoc = await getDoc(doc(db, userType === 'student' ? 'students' : 'mentors', user.uid));
+
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+
+                // Check if the logged-in user has the correct role
+                if (userData.role !== userType) {
+                    setError(`You are not registered as a ${userType}.`);
+                    return;
+                }
+
+                // Navigate to the appropriate dashboard
+                navigate(`/${userType}-dashboard`);
+            } else {
+                setError(`No user found for the ${userType} role.`);
+            }
         } catch (error) {
             setError("Invalid email or password. Please try again.");
         }
@@ -28,13 +47,30 @@ const Login = () => {
     const handleGoogleSignIn = async () => {
         const provider = new GoogleAuthProvider();
         try {
-            await signInWithPopup(auth, provider);
-            navigate("/${userType}-dashboard");
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+
+            // Fetch the user document from Firestore
+            const userDoc = await getDoc(doc(db, userType === 'student' ? 'students' : 'mentors', user.uid));
+
+            if (userDoc.exists()) {
+                const userData = userDoc.data();
+
+                // Check if the logged-in user has the correct role
+                if (userData.role !== userType) {
+                    setError(`You are not registered as a ${userType}.`);
+                    return;
+                }
+
+                // Navigate to the appropriate dashboard
+                navigate(`/${userType}-dashboard`);
+            } else {
+                setError(`No user found for the ${userType} role.`);
+            }
         } catch (error) {
             setError("Google sign-in failed. Please try again.");
         }
     };
-    
 
     return (
         <div className="min-h-screen bg-green-100 flex items-center justify-center">

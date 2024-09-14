@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import { FaUser, FaBlog, FaUserTie, FaCalendar, FaQuestionCircle, FaSignOutAlt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const SideBar = () => {
 
     const [compoment,setComponent] =useState('Mentors');
+
+    const navigate = useNavigate();
   return (
         <div className="w-64 bg-[#0a0e1f] p-6">
         <h2 className="text-2xl font-bold mb-6">Dashboard</h2>

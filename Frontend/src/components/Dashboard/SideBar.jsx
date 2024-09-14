@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaUser, FaBlog, FaUserTie, FaCalendar, FaQuestionCircle, FaSignOutAlt } from 'react-icons/fa';
 
 const SideBar = () => {
+
+    const [compoment,setComponent] =useState('Mentors');
   return (
         <div className="w-64 bg-[#0a0e1f] p-6">
         <h2 className="text-2xl font-bold mb-6">Dashboard</h2>

@@ -72,15 +72,16 @@ const Login = () => {
         }
     };
 
+
     return (
-        <div className="min-h-screen bg-green-100 flex items-center justify-center">
-            <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
-                <h1 className="text-3xl font-bold text-green-800 text-center mb-6">Welcome Back</h1>
-                <p className="text-center text-gray-600 mb-8">Login to your account</p>
+        <div className="min-h-screen bg-hero-pattern  bg-cover bg-center flex items-center justify-center"  >
+            <div className=" p-10 rounded-lg shadow-lg w-full max-w-md border">
+                <h1 className="text-3xl font-bold text-bg2 text-center mb-6">Welcome Back</h1>
+                <p className="text-center text-secondary  mb-8">Login to your account</p>
 
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label htmlFor="userType" className="block text-gray-700 font-bold mb-2">I am a</label>
+                        <label htmlFor="userType" className="block text-secondary font-bold mb-2">I am a</label>
                         <div className="flex items-center">
                             <input
                                 type="radio"
@@ -89,9 +90,9 @@ const Login = () => {
                                 value="student"
                                 checked={userType === 'student'}
                                 onChange={() => setUserType('student')}
-                                className="mr-2"
+                                className="mr-2 t"
                             />
-                            <label htmlFor="student" className="mr-4">Student</label>
+                            <label htmlFor="student" className="mr-4 text-white-100">Student</label>
                             <input
                                 type="radio"
                                 id="mentor"
@@ -99,13 +100,13 @@ const Login = () => {
                                 value="mentor"
                                 checked={userType === 'mentor'}
                                 onChange={() => setUserType('mentor')}
-                                className="mr-2"
+                                className="mr-2 "
                             />
-                            <label htmlFor="mentor">Mentor</label>
+                            <label htmlFor="mentor" className='text-white-100'>Mentor</label>
                         </div>
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email</label>
+                        <label htmlFor="email" className="block text-secondary font-bold mb-2">Email</label>
                         <input
                             type="email"
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
@@ -115,7 +116,7 @@ const Login = () => {
                         />
                     </div>
                     <div className="mb-6">
-                        <label htmlFor="password" className="block text-gray-700 font-bold mb-2">Password</label>
+                        <label htmlFor="password" className="block text-secondary font-bold mb-2">Password</label>
                         <input
                             type="password"
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-500"
@@ -129,13 +130,13 @@ const Login = () => {
                     </div>
                     {error && <p className="text-red-500 mb-4">{error}</p>}
                     <div className="flex space-x-4">
-                        <button className="bg-green-700 text-white py-2 px-6 w-full rounded-lg hover:bg-green-800 transition duration-200" type="submit">
+                        <button className="bg-bg text-white hover:border py-2 px-6 w-full rounded-lg transition duration-200" type="submit">
                             Login
                         </button>
                         <button
                             type="button"
                             onClick={handleBack}
-                            className="w-full py-3 rounded-lg text-white bg-gray-500 hover:bg-gray-600 transition-colors"
+                            className="w-full py-3 rounded-lg text-black  bg-white hover:bg-gray-300 transition-colors"
                         >
                             Back
                         </button>
@@ -145,13 +146,13 @@ const Login = () => {
                 <div className="mt-6">
                     <button
                         onClick={handleGoogleSignIn}
-                        className="w-full py-3 rounded-lg text-white bg-red-600 hover:bg-red-700 transition-colors"
-                    >
+                        className="w-full py-3 rounded-lg  bg-bg text-white-100 hover:border transition-colors"
+                    > 
                         Continue with Google
                     </button>
                 </div>
 
-                <p className="text-center text-gray-600 mt-6">Don’t have an account? <Link to="/signup" className="text-yellow-500 hover:underline">Sign up</Link></p>
+                <p className="text-center text-secondary mt-6">Don’t have an account? <Link to="/signup" className="text-yellow-500 hover:underline">Sign up</Link></p>
             </div>
         </div>
     );

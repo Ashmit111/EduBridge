@@ -82,13 +82,13 @@ const MentorSignup = () => {
     };
 
     return (
-        <div className="min-h-screen bg-green-100 flex items-center justify-center">
-            <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
-                <h1 className="text-3xl font-bold text-green-800 text-center mb-6">Mentor Signup</h1>
+        <div className="min-h-screen bg-hero-pattern flex items-center justify-center">
+            <div className="border p-10 rounded-lg shadow-lg w-full max-w-md">
+                <h1 className="text-3xl font-bold text-bg2 text-center mb-6">Mentor Signup</h1>
                 {error && <p className="text-red-500 text-center mb-4">{error}</p>}
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label htmlFor="fullName" className="block text-gray-700 font-bold mb-2">Full Name</label>
+                        <label htmlFor="fullName" className="block text-secondary font-bold mb-2">Full Name</label>
                         <input
                             type="text"
                             id="fullName"
@@ -99,7 +99,7 @@ const MentorSignup = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email Address</label>
+                        <label htmlFor="email" className="block text-secondary font-bold mb-2">Email Address</label>
                         <input
                             type="email"
                             id="email"
@@ -110,7 +110,7 @@ const MentorSignup = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="password" className="block text-gray-700 font-bold mb-2">Password</label>
+                        <label htmlFor="password" className="block text-secondary font-bold mb-2">Password</label>
                         <input
                             type="password"
                             id="password"
@@ -121,17 +121,17 @@ const MentorSignup = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="profilePicture" className="block text-gray-700 font-bold mb-2">Profile Picture (Optional)</label>
+                        <label htmlFor="profilePicture" className="block text-secondary font-bold mb-2">Profile Picture (Optional)</label>
                         <input
                             type="file"
                             id="profilePicture"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                            className="w-full px-4 py-2 border text-white border-gray-300 rounded-lg"
                             accept="image/*"
                             onChange={handleProfilePictureChange}
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="highestEducation" className="block text-gray-700 font-bold mb-2">Highest Level of Education</label>
+                        <label htmlFor="highestEducation" className="block text-secondary font-bold mb-2">Highest Level of Education</label>
                         <input
                             type="text"
                             id="highestEducation"
@@ -143,7 +143,7 @@ const MentorSignup = () => {
                     </div>
                     {/* Expertise Section */}
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-bold mb-2">Field(s) of Expertise</label>
+                        <label className="block text-secondary font-bold mb-2">Field(s) of Expertise</label>
                         {expertiseFields.map((field, index) => (
                             <div key={index} className="flex items-center mb-2">
                                 <input
@@ -166,13 +166,13 @@ const MentorSignup = () => {
                         <button
                             type="button"
                             onClick={handleAddExpertise}
-                            className="bg-blue-500 text-white py-2 px-4 rounded-lg"
+                            className="bg-bg hover:border text-white py-2 px-4 rounded-lg"
                         >
                             Add Expertise
                         </button>
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="currentOccupation" className="block text-gray-700 font-bold mb-2">Current Occupation</label>
+                        <label htmlFor="currentOccupation" className="block text-secondary font-bold mb-2">Current Occupation</label>
                         <input
                             type="text"
                             id="currentOccupation"
@@ -183,7 +183,7 @@ const MentorSignup = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="yearsOfExperience" className="block text-gray-700 font-bold mb-2">Years of Experience</label>
+                        <label htmlFor="yearsOfExperience" className="block text-secondary font-bold mb-2">Years of Experience</label>
                         <input
                             type="number"
                             id="yearsOfExperience"
@@ -194,7 +194,7 @@ const MentorSignup = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="bio" className="block text-gray-700 font-bold mb-2">Bio</label>
+                        <label htmlFor="bio" className="block text-secondary font-bold mb-2">Bio</label>
                         <textarea
                             id="bio"
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg"
@@ -205,14 +205,14 @@ const MentorSignup = () => {
                     </div>
                     <button
                         type="submit"
-                        className="bg-green-700 text-white py-2 px-6 rounded-lg hover:bg-green-800 transition duration-200"
+                        className="bg-bg text-white py-2 px-6 rounded-lg hover:bg-bg2 transition duration-200"
                     >
                         Sign Up
                     </button>
                 </form>
                 <button
                     onClick={handleGoBack}
-                    className="mt-6 text-green-500 hover:underline"
+                    className="mt-6 text-bg2 hover:underline"
                 >
                     Go Back
                 </button>

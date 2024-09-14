@@ -45,7 +45,7 @@ const StudentSignup = () => {
                 role: 'student' // Add role field
             });
 
-            navigate('/student-dashboard');
+            navigate('/dashboard/mentor');
         } catch (error) {
             console.error("Error signing up:", error);
             setError("An error occurred while signing up. Please try again."); // Display error message

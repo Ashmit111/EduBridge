@@ -1,22 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Home from "./components/Home/Home";
-import Login from "./components/second/login";
 import Layout from "./Layout";
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, Routes } from 'react-router-dom'
+import Login from './components/Login/login'
+import VideoCall from "./components/VideoCall/VideoCall";
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from 'react-router-dom'
 
-
-import App from "./App";
 import "./index.css";
-import Layout from "../layout";
 import AddPost from "./components/AddPosts/AddPost";
+import Calender from "./components/Calender/Calender";
+import MentorCard from "./components/MentorCard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Layout/>}>
+    <Route>
       <Route path="home" element={<Home/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="add-post" element={<AddPost/>}/>
+      <Route path="/room/:roomID" element={< VideoCall/>}/>
+      <Route path="/calender" element={<Calender/>}/>
+      <Route path="/mentor" element={<MentorCard/>}/>
     </Route>
   )
   
@@ -24,7 +27,7 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App/>
+    <RouterProvider router={router}/>
   </React.StrictMode>,
 )
 

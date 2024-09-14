@@ -6,8 +6,6 @@ import Signup from "./components/Signup/SignUp";
 import StudentSignup from "./components/Student_SignUp/StudentSignup";
 import MentorSignup from "./components/MentorSignup/MentorSignup";
 import StudentDashboard from "./components/studentDashboard/studentDashboard";
-import { createBrowserRouter, createRoutesFromElements, Route, Router, RouterProvider } from 'react-router-dom'
-import Login from "./components/Login/login"
 import Layout from "./Layout";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, Routes } from 'react-router-dom'
 import Dashboard from "./components/Dashboard/Dashboard";

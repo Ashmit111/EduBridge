@@ -9,14 +9,14 @@ import StudentDashboard from "./components/studentDashboard/studentDashboard";
 import { createBrowserRouter, createRoutesFromElements, Route, Router, RouterProvider } from 'react-router-dom'
 
 
-import App from "./App";
 import "./index.css";
-import Layout from "../layout";
 import AddPost from "./components/AddPosts/AddPost";
+import Calender from "./components/Calender/Calender";
+import MentorCard from "./components/MentorCard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Layout/>}>
+    <Route>
       <Route path="home" element={<Home/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="add-post" element={<AddPost/>}/>
@@ -33,7 +33,7 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App/>
+    <RouterProvider router={router}/>
   </React.StrictMode>,
 )
 

@@ -25,7 +25,7 @@ const MentorCard = () => {
           type="button"
           data-drawer-hide="drawer-timepicker"
           className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 inline-flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white"
-          onClick={handleCloseDrawer}
+          // onClick={}
         >
           <svg
             className="w-3 h-3"

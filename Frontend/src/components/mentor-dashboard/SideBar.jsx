@@ -2,7 +2,7 @@ import React from 'react'
 import { FaUser, FaUserTie, FaCalendar, FaQuestionCircle, FaSignOutAlt,FaMeetup } from 'react-icons/fa';
 import { IoIosAddCircleOutline } from "react-icons/io";
 
-const SideBar = () => {
+const SideBarMentor = () => {
   return (
         <div className="w-64 bg-[#0a0e1f] p-6">
         <h2 className="text-2xl font-bold mb-6">Dashboard</h2>

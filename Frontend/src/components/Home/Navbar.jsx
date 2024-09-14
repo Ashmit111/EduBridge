@@ -71,7 +71,7 @@ const Navbar = () => {
             }}
           >
             <Flex gap="small" wrap>
-              <Button type="primary">Login</Button>
+              <Button type="primary mr-4">Login</Button>
             </Flex>
           </Link>
           <Link

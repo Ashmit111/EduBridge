@@ -7,6 +7,10 @@ import StudentSignup from "./components/Student_SignUp/StudentSignup";
 import MentorSignup from "./components/MentorSignup/MentorSignup";
 import StudentDashboard from "./components/studentDashboard/studentDashboard";
 import { createBrowserRouter, createRoutesFromElements, Route, Router, RouterProvider } from 'react-router-dom'
+import Login from "./components/Login/login"
+import Layout from "./Layout";
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider, Routes } from 'react-router-dom'
+import Dashboard from "./components/Dashboard/Dashboard";
 
 
 import "./index.css";
@@ -18,6 +22,7 @@ const router = createBrowserRouter(
       <Route path="home" element={<Home/>}/>
       <Route path="login" element={<Login/>}/>
       <Route path="add-post" element={<AddPost/>}/>
+      <Route path="dashboard" element={<Dashboard/>}/>
       <Route path="signup" element={<Signup/>}/>
       <Route path="/student-signup" element={<StudentSignup />} />
       <Route path="/mentor-signup" element={<MentorSignup />} />

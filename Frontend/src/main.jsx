@@ -18,6 +18,7 @@ import BlogCard from "./components/Dashboard/BlogCard";
 import YourSchedules from "./components/Scheduled/Scheduled";
 import SchedulePage from "./components/Schedule/Schedule";
 import StudentProfile from "./components/Dashboard/StudentProfile";
+import MentorDashboard from "./components/mentor-dashboard/Mentor-dashboard.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
       <Route path="signup" element={<Signup/>}/>
       <Route path="/student-signup" element={<StudentSignup />} />
       <Route path="/mentor-signup" element={<MentorSignup />} />
+      <Route path="/mentor-dashboard" element={<MentorDashboard/>}/>
       <Route path="/student-dashboard" element={<StudentProfile />} />
       {/* <Route path="/schedule-page" element={<SchedulePage />} /> */}
      

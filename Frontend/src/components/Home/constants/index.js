@@ -171,7 +171,7 @@ const testimonials = [
   {
     testimonial:
       "This platform is a game-changer! Mentors guide me through academics and career choices, while peers offer great study support.",
-    name: "Sara Lee",
+    name: "Sara Jain",
     designation: "Graduate",
     company: "St.High UNiversity",
     image: "https://randomuser.me/api/portraits/women/4.jpg",
@@ -179,15 +179,15 @@ const testimonials = [
   {
     testimonial:
       "Valuable guidance for research and career planning, plus supportive peer interactions. A must-have for grad students!.",
-    name: "Chris Brown",
+    name: "Ramesh Raj",
     designation: "Second Year Student",
     company: "LTCE",
     image: "https://randomuser.me/api/portraits/men/5.jpg",
   },
   {
     testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "ake Malan:",
+      "Valuable guidance for research and career planning, plus supportive peer interactions. A must-have for grad students!.",
+    name: "Jayesh Gupta",
     designation: "Final Year Student",
     company: "Namo school of Graduates",
     image: "https://randomuser.me/api/portraits/women/6.jpg",

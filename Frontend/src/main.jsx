@@ -11,8 +11,6 @@ import { createBrowserRouter, createRoutesFromElements, Route, Router, RouterPro
 
 import "./index.css";
 import AddPost from "./components/AddPosts/AddPost";
-import Calender from "./components/Calender/Calender";
-import MentorCard from "./components/MentorCard";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

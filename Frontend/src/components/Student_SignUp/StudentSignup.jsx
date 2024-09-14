@@ -57,13 +57,13 @@ const StudentSignup = () => {
     };
 
     return (
-        <div className="min-h-screen bg-green-100 flex items-center justify-center">
-            <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
-                <h1 className="text-3xl font-bold text-green-800 text-center mb-6">Student Signup</h1>
-                {error && <p className="text-red-500 text-center mb-4">{error}</p>} {/* Display error message */}
+        <div className="min-h-screen bg-hero-pattern bg-cover bg-center flex items-center justify-center">
+            <div className=" p-10 rounded-lg shadow-lg w-full max-w-md border">
+                <h1 className="text-3xl font-bold text-bg2 text-center mb-6">Student Signup</h1>
+                {error && <p className="text-red-700 text-center mb-4">{error}</p>} {/* Display error message */}
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label htmlFor="fullName" className="block text-gray-700 font-bold mb-2">Full Name</label>
+                        <label htmlFor="fullName" className="block text-secondary font-bold mb-2">Full Name</label>
                         <input
                             type="text"
                             id="fullName"
@@ -74,7 +74,7 @@ const StudentSignup = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email Address</label>
+                        <label htmlFor="email" className="block text-secondary font-bold mb-2">Email Address</label>
                         <input
                             type="email"
                             id="email"
@@ -85,7 +85,7 @@ const StudentSignup = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="password" className="block text-gray-700 font-bold mb-2">Password</label>
+                        <label htmlFor="password" className="block text-secondary font-bold mb-2">Password</label>
                         <input
                             type="password"
                             id="password"
@@ -96,7 +96,7 @@ const StudentSignup = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="fieldOfStudy" className="block text-gray-700 font-bold mb-2">Field of Study</label>
+                        <label htmlFor="fieldOfStudy" className="block text-secondary font-bold mb-2">Field of Study</label>
                         <input
                             type="text"
                             id="fieldOfStudy"
@@ -107,7 +107,7 @@ const StudentSignup = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="graduationYear" className="block text-gray-700 font-bold mb-2">Expected Graduation Year</label>
+                        <label htmlFor="graduationYear" className="block text-secondary font-bold mb-2">Expected Graduation Year</label>
                         <input
                             type="number"
                             id="graduationYear"
@@ -118,7 +118,7 @@ const StudentSignup = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700 font-bold mb-2">Subjects You Need Help With</label>
+                        <label className="block text-secondary font-bold mb-2">Subjects You Need Help With</label>
                         {subjectsList.map((subject) => (
                             <div key={subject.value} className="flex items-center mb-2">
                                 <input
@@ -129,20 +129,20 @@ const StudentSignup = () => {
                                     onChange={handleSubjectChange}
                                     className="mr-2"
                                 />
-                                <label htmlFor={subject.value} className="text-gray-700">{subject.label}</label>
+                                <label htmlFor={subject.value} className="text-secondary">{subject.label}</label>
                             </div>
                         ))}
                     </div>
                     <button
                         type="submit"
-                        className="bg-green-700 text-white py-2 px-6 rounded-lg hover:bg-green-800 transition duration-200"
+                        className="bg-bg text-white py-2 px-6 rounded-lg hover:border transition duration-200"
                     >
                         Sign Up
                     </button>
                 </form>
                 <button
                     onClick={handleGoBack}
-                    className="mt-6 text-green-500 hover:underline"
+                    className="mt-6 text-bg2 hover:underline"
                 >
                     Go Back
                 </button>

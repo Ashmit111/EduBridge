@@ -76,6 +76,7 @@ const BlogPost = () => {
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                             required
+                            placeholder='Enter Title...'
                         />
                     </div>
                     <div className="mb-4">
@@ -87,6 +88,7 @@ const BlogPost = () => {
                             onChange={(e) => setContent(e.target.value)}
                             rows="5"
                             required
+                            placeholder='Enter Content...'
                         />
                     </div>
                     <div className="mb-4">
@@ -101,7 +103,7 @@ const BlogPost = () => {
                     </div>
                     <button
                         type="submit"
-                        className="bg-bg  py-2 px-6 rounded-lg hover:border transition duration-200"
+                        className="bg-bg text-white  py-2 px-6 rounded-lg hover:border transition duration-200"
                         disabled={loading}
                     >
                         {loading ? 'Posting...' : 'Post Blog'}

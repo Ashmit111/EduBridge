@@ -14,8 +14,9 @@ const Profile = () => {
                 const docRef = doc(db, 'mentors', userId);
                 const docSnap = await getDoc(docRef);
                 if (docSnap.exists()) {
-                    setProfile(docSnap.data());
-                    setFormData(docSnap.data());
+                    const data = docSnap.data();
+                    setProfile(data);
+                    setFormData(data);
                 } else {
                     console.log("No such document!");
                 }
@@ -46,88 +47,67 @@ const Profile = () => {
     };
 
     return (
-        <div>
-            <h2 className="text-xl font-bold mb-4">Profile</h2>
-            {editing ? (
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-4">
-                        <label htmlFor="fullName" className="block mb-2">Full Name</label>
-                        <input
-                            id="fullName"
-                            value={formData.fullName || ''}
-                            onChange={handleChange}
-                            className="block w-full mb-2 p-2 border rounded"
-                        />
+        <div className="min-h-screen bg-gray-900 text-white p-6">
+            <div className="max-w-4xl mx-auto bg-gray-800 rounded-lg shadow-lg p-8">
+                <h2 className="text-3xl font-bold mb-6 text-purple-400">Profile</h2>
+                
+                {editing ? (
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        {['fullName', 'email', 'currentOccupation', 'highestEducation', 'yearsOfExperience', 'expertise'].map(field => (
+                            <div key={field} className="mb-4">
+                                <label htmlFor={field} className="block text-xl font-semibold mb-2">
+                                    {field.replace(/([A-Z])/g, ' $1').toUpperCase()}
+                                </label>
+                                <input
+                                    id={field}
+                                    value={formData[field] || ''}
+                                    onChange={handleChange}
+                                    className="w-full p-3 bg-gray-700 text-white rounded-lg border border-gray-600"
+                                    required
+                                />
+                            </div>
+                        ))}
+                        <div className="flex justify-between mt-6">
+                            <button
+                                type="submit"
+                                className="px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition duration-200"
+                            >
+                                Save Changes
+                            </button>
+                            <button
+                                type="button"
+                                onClick={handleEdit}
+                                className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition duration-200"
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                ) : (
+                    <div>
+                        {profile ? (
+                            <>
+                                {['fullName', 'email', 'currentOccupation', 'highestEducation', 'yearsOfExperience', 'expertise'].map(field => (
+                                    <div key={field} className="mb-4">
+                                        <h3 className="text-xl font-semibold">
+                                            {field.replace(/([A-Z])/g, ' $1').toUpperCase()}:
+                                        </h3>
+                                        <p className="text-gray-300">{profile[field] || 'N/A'}</p>
+                                    </div>
+                                ))}
+                                <button
+                                    onClick={handleEdit}
+                                    className="mt-4 px-6 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition duration-200"
+                                >
+                                    Edit Profile
+                                </button>
+                            </>
+                        ) : (
+                            <p className="text-gray-300">Loading profile data...</p>
+                        )}
                     </div>
-                    <div className="mb-4">
-                        <label htmlFor="email" className="block mb-2">Email</label>
-                        <input
-                            id="email"
-                            type="email"
-                            value={formData.email || ''}
-                            onChange={handleChange}
-                            className="block w-full mb-2 p-2 border rounded"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="currentOccupation" className="block mb-2">Occupation</label>
-                        <input
-                            id="currentOccupation"
-                            value={formData.currentOccupation || ''}
-                            onChange={handleChange}
-                            className="block w-full mb-2 p-2 border rounded"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="highestEducation" className="block mb-2">Highest Education</label>
-                        <input
-                            id="highestEducation"
-                            value={formData.highestEducation || ''}
-                            onChange={handleChange}
-                            className="block w-full mb-2 p-2 border rounded"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="yearsOfExperience" className="block mb-2">Years of Experience</label>
-                        <input
-                            id="yearsOfExperience"
-                            value={formData.yearsOfExperience || ''}
-                            onChange={handleChange}
-                            className="block w-full mb-2 p-2 border rounded"
-                        />
-                    </div>
-                    <div className="mb-4">
-                        <label htmlFor="expertise" className="block mb-2">Expertise</label>
-                        <input
-                            id="expertise"
-                            value={formData.expertise || ''}
-                            onChange={handleChange}
-                            className="block w-full mb-2 p-2 border rounded"
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="bg-green-500 text-white py-2 px-6 rounded hover:bg-green-600"
-                    >
-                        Save Changes
-                    </button>
-                </form>
-            ) : (
-                <div>
-                    <p><strong>Full Name:</strong> {profile?.fullName}</p>
-                    <p><strong>Email:</strong> {profile?.email}</p>
-                    <p><strong>Occupation:</strong> {profile?.currentOccupation}</p>
-                    <p><strong>Highest Education:</strong> {profile?.highestEducation}</p>
-                    <p><strong>Years of Experience:</strong> {profile?.yearsOfExperience}</p>
-                    <p><strong>Expertise:</strong> {profile?.expertise}</p>
-                    <button
-                        onClick={handleEdit}
-                        className="bg-yellow-500 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-600"
-                    >
-                        Edit Profile
-                    </button>
-                </div>
-            )}
+                )}
+            </div>
         </div>
     );
 };

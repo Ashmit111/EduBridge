@@ -77,12 +77,12 @@ const MentorDashboard = () => {
                     </ul>
                 </nav>
             </aside>
-            <div className="flex-1">
+            <div className="flex-1 bg-primary">
                 <header className="bg-gray-100 p-4 shadow">
                     <h1 className="text-3xl font-bold">Welcome, Mentor</h1>
                 </header>
 
-                <div className="p-6">
+                <div className="p-6 bg-primary">
                     {activeSection === 'profile' && <Profile />}
                     {activeSection === 'meetings' && <MeetingList userId={auth.currentUser?.uid} />}
                     {activeSection === 'blogs' && <MyBlogs />}

@@ -7,7 +7,6 @@ import StudentSignup from "./components/Student_SignUp/StudentSignup";
 import MentorSignup from "./components/MentorSignup/MentorSignup";
 import StudentDashboard from "./components/studentDashboard/studentDashboard";
 import { createBrowserRouter, createRoutesFromElements, Route, Router, RouterProvider } from 'react-router-dom'
-import Layout from "./Layout";
 import Dashboard from "./components/Dashboard/Dashboard";
 
 
@@ -15,7 +14,10 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import "./index.css";
 import AddPost from "./components/AddPosts/AddPost";
 import ContentDashBoard from "./components/Dashboard/ContentDashBoard";
+import BlogCard from "./components/Dashboard/BlogCard";
+import YourSchedules from "./components/Scheduled/Scheduled";
 import SchedulePage from "./components/Schedule/Schedule";
+import StudentProfile from "./components/Dashboard/StudentProfile";
 import MentorDashboard from "./components/mentor-dashboard/Mentor-dashboard.jsx";
 
 const router = createBrowserRouter(
@@ -26,13 +28,16 @@ const router = createBrowserRouter(
       <Route path="add-post" element={<AddPost/>}/>
       <Route path="dashboard" element={<Dashboard/>}>
         <Route path="mentor" element={<ContentDashBoard/>}/>
+        <Route path="schedule" element={<YourSchedules/>}/>
+        <Route path="blog" element={<BlogCard/>}/>
+        <Route path="bookschedule" element={<SchedulePage/>}/>
       </Route>
       <Route path="signup" element={<Signup/>}/>
       <Route path="/student-signup" element={<StudentSignup />} />
       <Route path="/mentor-signup" element={<MentorSignup />} />
       <Route path="/mentor-dashboard" element={<MentorDashboard/>}/>
-      <Route path="/student-dashboard" element={<StudentDashboard />} />
-      <Route path="/schedule-page" element={<SchedulePage />} />
+      <Route path="/student-dashboard" element={<StudentProfile />} />
+      {/* <Route path="/schedule-page" element={<SchedulePage />} /> */}
      
 
       

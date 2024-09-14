@@ -25,10 +25,6 @@ const router = createBrowserRouter(
     <Route>
       <Route path="home" element={<Home />} />
       <Route path="login" element={<Login />} />
-      
-
-     
-
       <Route path="signup" element={<Signup />} />
       <Route path="home" element={<Home/>}/>
       <Route path="login" element={<Login/>}/>
@@ -53,8 +49,6 @@ const router = createBrowserRouter(
         <Route path="add-post" element={<AddPost />} />
         <Route path="myblog" element={<BlogCard />} />
       </Route>
-
-      <Route path="/student-dashboard" element={<StudentProfile />} />
       <Route path="uploadNotes" element={<UploadPDF/>} />
 
       <Route path="/mentor-dashboard" element={<MentorDashboard/>}/>

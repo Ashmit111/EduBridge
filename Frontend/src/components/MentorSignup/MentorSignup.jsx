@@ -40,7 +40,7 @@ const MentorSignup = () => {
             const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
 
-            let profilePictureUrl = null;
+            let profilePictureUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTc1JzU1FDGrFNFDGFt6LylcJB7o18u9Ir0mg&s';
             if (profilePicture) {
                 profilePictureUrl = await uploadProfilePicture(profilePicture);
             }

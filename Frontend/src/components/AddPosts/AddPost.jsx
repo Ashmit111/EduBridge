@@ -23,50 +23,56 @@ const AddPost = () => {
         e.preventDefault();
         setError('');
         setLoading(true);
-
+    
         try {
             const user = auth.currentUser; 
             if (!user) {
                 setError('You need to be logged in to create a blog post.');
+                setLoading(false);
                 return;
             }
-
-            let imageUrl = null;
-
+    
+            let imageUrl = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsfvj_eDHM_-tcdOh-l3H46MlRgyU4HeiidQ&s';
+    
+            // Upload image to Firebase Storage if an image is provided
             if (image) {
-                const imageRef = ref(storage, `blogImages/${uuidv4()}-${image.name}`);
+                const imageRef = ref(storage, blogImages/`${uuidv4()}-${image.name}`);
                 const snapshot = await uploadBytes(imageRef, image);
                 imageUrl = await getDownloadURL(snapshot.ref);
             }
-
-            const postId = uuidv4();
-
+    
+            const postId = uuidv4(); // Generate a unique post ID
+    
+            // Add the blog post data to Firestore with additional fields
             await addDoc(collection(db, 'blogPosts'), {
-                userId: user.uid,
+                userId: user.uid, // The ID of the mentor posting the blog
                 title,
                 content,
                 imageUrl,
                 postId,
-                createdAt: new Date()
+                createdAt: new Date(),
+                likes: 0, // Initialize likes to 0
+                comments: [] // Initialize comments as an empty array
             });
-
+    
+            // Redirect user to mentor dashboard after posting
             navigate('/mentor-dashboard'); 
         } catch (error) {
             console.error('Error creating blog post:', error);
             setError('An error occurred while creating the blog post. Please try again.');
         } finally {
-            setLoading(false);
+            setLoading(false); 
         }
     };
 
     return (
-        <div className="min-h-screen bg-green-100 flex items-center justify-center">
-            <div className="bg-white p-10 rounded-lg shadow-lg w-full max-w-md">
-                <h1 className="text-3xl font-bold text-green-800 text-center mb-6">Create Blog Post</h1>
+        <div className="min-h-screen bg-hero-pattern flex items-center justify-center">
+            <div className="border p-10 rounded-lg shadow-lg w-full max-w-md">
+                <h1 className="text-3xl font-bold text-bg2 text-center mb-6">Create Blog Post</h1>
                 {error && <p className="text-red-500 text-center mb-4">{error}</p>}
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label htmlFor="title" className="block text-gray-700 font-bold mb-2">Title</label>
+                        <label htmlFor="title" className="block text-secondary font-bold mb-2">Title</label>
                         <input
                             type="text"
                             id="title"
@@ -77,7 +83,7 @@ const AddPost = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="content" className="block text-gray-700 font-bold mb-2">Content</label>
+                        <label htmlFor="content" className="block text-secondary font-bold mb-2">Content</label>
                         <textarea
                             id="content"
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg"
@@ -88,18 +94,18 @@ const AddPost = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="image" className="block text-gray-700 font-bold mb-2">Image (Optional)</label>
+                        <label htmlFor="image" className="block text-secondary font-bold mb-2">Image (Optional)</label>
                         <input
                             type="file"
                             id="image"
                             accept="image/*"
-                            className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                            className="w-full px-4 py-2 border text-gray-400 border-gray-300 rounded-lg"
                             onChange={handleImageUpload}
                         />
                     </div>
                     <button
                         type="submit"
-                        className="bg-green-700 text-white py-2 px-6 rounded-lg hover:bg-green-800 transition duration-200"
+                        className="bg-bg text-white py-2 px-6 rounded-lg hover:border transition duration-200"
                         disabled={loading}
                     >
                         {loading ? 'Posting...' : 'Post Blog'}
